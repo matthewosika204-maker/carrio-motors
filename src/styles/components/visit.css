@@ -1,0 +1,341 @@
+/* Visit Section Styles */
+.visit {
+  position: relative;
+  padding: 6rem 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .visit {
+    padding: 7rem 2.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .visit {
+    padding: 8rem 3rem;
+  }
+}
+
+.visit__inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  display: grid;
+  gap: 2.5rem;
+}
+
+@media (min-width: 768px) {
+  /* Tablet: keep header full-width on top, place panel and media side-by-side */
+  .visit__inner {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto 1fr;
+    gap: 2.5rem;
+    align-items: start;
+  }
+
+  .visit__header {
+    grid-column: 1 / -1;
+    grid-row: 1 / 2;
+    text-align: left;
+    margin: 0 0 1rem;
+  }
+
+  .visit__panel {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+  }
+
+  .visit__media {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+  }
+}
+
+@media (min-width: 1024px) {
+  /* Use three columns on large screens: heading | cards | media
+     and two rows: header row + content row so media can fill content height */
+  .visit__inner {
+    /* heading | cards | media — balanced widths for cleaner layout */
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.9fr) minmax(0, 1fr);
+    grid-template-rows: auto 1fr;
+    align-items: stretch;
+    gap: 3rem;
+    min-height: 44rem;
+  }
+}
+
+.visit__header {
+  max-width: 44rem;
+  margin: 0 auto 2.5rem;
+  text-align: center;
+}
+
+@media (min-width: 1024px) {
+  .visit__header {
+    margin: 0 0 2.5rem;
+    text-align: left;
+    grid-column: 1 / 2;
+    grid-row: 1 / 3; /* span both rows so we can vertically center the heading */
+    align-self: center;
+  }
+}
+
+.visit__label {
+  font-size: 0.875rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.38em;
+  color: var(--color-accent);
+  margin-bottom: 1rem;
+}
+
+.visit__title {
+  font-size: 2.25rem;
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  line-height: 1.1;
+}
+
+@media (min-width: 768px) {
+  .visit__title {
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .visit__title {
+    font-size: 3.75rem;
+  }
+}
+
+.visit__title-accent {
+  color: var(--color-accent);
+}
+
+.visit__content {
+  display: grid;
+  gap: 2rem;
+}
+
+@media (min-width: 1024px) {
+  .visit__content {
+    /* let children participate in the parent grid (heading, panel, media)
+       so we can place panel in middle column and media in right column */
+    display: contents;
+  }
+}
+
+.visit__panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  align-self: start;
+}
+
+/* Desktop-specific layout improvements */
+@media (min-width: 1024px) {
+  /* Place the header to the left column (keeps heading visually separate) */
+  .visit__header {
+    grid-column: 1 / 2;
+    grid-row: 1 / 3;
+    align-self: center;
+    margin-bottom: 0;
+  }
+
+  /* Place the panel in the middle column and content row */
+  .visit__panel {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    justify-content: center; /* center panel content vertically */
+    align-self: center; /* center the panel within the grid row */
+    width: 100%;
+    max-width: none;
+    padding-right: 0.5rem;
+  }
+
+  .visit__details,
+  .visit__contact {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  /* Make middle cards align to the top and not stretch taller than content */
+  .visit__panel > * {
+    align-self: stretch;
+  }
+
+  .visit__cta {
+    margin-top: 1rem;
+  }
+
+  /* Stretch the media column to match the height of the panel */
+  /* Place media in the rightmost column and anchor content to bottom
+     make media fill the content row so image can align to bottom */
+  .visit__media {
+    grid-column: 3 / 4;
+    grid-row: 2 / 3;
+    align-self: stretch;
+    display: flex;
+    align-items: flex-end; /* anchor image to bottom */
+    justify-content: center;
+    padding: 0;
+    height: 100%;
+    min-height: 42rem;
+    overflow: hidden;
+  }
+
+  /* Center the image on the car and make it fill the media block */
+  .visit__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 85%;
+    display: block;
+  }
+}
+
+.visit__details,
+.visit__contact {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.01));
+  border: 1px solid var(--color-border);
+  border-radius: 1.25rem;
+  padding: 2rem;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+@media (min-width: 1024px) {
+  .visit__details {
+    padding: 3rem;
+  }
+}
+
+.visit__section-label {
+  font-size: 0.75rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  color: var(--color-accent);
+  margin-bottom: 1.5rem;
+}
+
+.visit__dl {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  color: var(--color-text);
+}
+
+.visit__dl-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.visit__dt {
+  color: var(--color-text-muted);
+}
+
+.visit__dd {
+  font-size: 1.125rem;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+@media (min-width: 1024px) {
+  .visit__details,
+  .visit__contact {
+    padding: 2.5rem;
+  }
+}
+
+.visit__address {
+  font-style: normal;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.visit__contact-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.visit__contact-label {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+.visit__contact-link {
+  font-size: 1.125rem;
+  font-weight: 900;
+  color: var(--color-text);
+  transition: color var(--transition-fast);
+}
+
+.visit__contact-link:hover {
+  color: var(--color-accent);
+}
+
+.visit__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  background: var(--color-text);
+  padding: 1rem 1.75rem;
+  font-size: 0.875rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  color: var(--color-bg);
+  border-radius: 999px;
+  transition: background-color var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+}
+
+.visit__cta:hover {
+  transform: translateY(-2px);
+}
+
+.visit__cta:hover {
+  background: var(--color-accent);
+  color: var(--color-text);
+}
+
+.visit__media {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1.5rem;
+  border: 1px solid var(--color-border);
+  background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+  min-height: 24rem;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3);
+}
+
+.visit__image {
+  width: 100%;
+  height: 100%;
+  min-height: 24rem;
+  object-fit: cover;
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .visit__media,
+  .visit__image {
+    min-height: 30rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .visit__media,
+  .visit__image {
+    min-height: 35rem;
+  }
+}
